@@ -1,6 +1,7 @@
 
   <div>
-      <img ng-src="{{pics.data.data[0].images.low_resolution.url}}" />
-      <form action=""><input type="text" ng-model="tag"><button ng-click="refresh()">refresh</form>
+      <img ng-repeat="pic in images_for_words" ng-src="{{pic}}" />
+      <form action=""><input type="text" ng-model="sentence"><button ng-click="parseSentence(sentence)">refresh</form>
 
   </div>
+

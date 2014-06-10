@@ -1,43 +1,30 @@
 'use strict';
 
 angular.module('igTranslateApp')
-  .controller('MainCtrl', function ($scope, $http) {
-  	$scope.tag = '';
-  	$scope.refresh = function(){$http.jsonp('https://api.instagram.com/v1/tags/'+$scope.tag+'/media/recent?callback=JSON_CALLBACK&client_id=5616df9edae94bdbaf03d2fa5216d17b&count=1')
-  		.then(function (response) {
-  			console.log(response);
-            $scope.pics = response;
-            // $scope.picsUrl = [];
+  .controller('MainCtrl', function ($scope, $http, $q) {
+	$scope.sentence = '';
+	$scope.tag = '';
+	$scope.words = [];
+	$scope.refresh = function(){
+		$http.jsonp('https://api.instagram.com/v1/tags/'+$scope.tag+'/media/recent?callback=JSON_CALLBACK&client_id=5616df9edae94bdbaf03d2fa5216d17b&count=1')
+			.then(function (response) {
+	 			console.log(response);
+				$scope.pics = response;
+	 		});
+ 	};
+ 	$scope.parseSentence = function(sentence) {
+ 		var strArray = sentence.split(' ');
 
-            // for(var i in $scope.pics.data.data.images) {
-            // 	$scope.picsUrl.push('lol');
-            // };
-        })
-  	}
+ 		var promiseArray = strArray.map(function(word) {
+			return $http.jsonp('https://api.instagram.com/v1/tags/'+word+'/media/recent?callback=JSON_CALLBACK&client_id=5616df9edae94bdbaf03d2fa5216d17b&count=1')
+ 		});
+ 		$q.all(promiseArray).then(function(arrayOfArrayOfInstagrams) {
+ 			var image_urls = arrayOfArrayOfInstagrams.map(function(response) {
+ 				return response.data.data[0].images.low_resolution.url;
+ 			});
+ 			$scope.images_for_words = image_urls;
+ 			console.log(image_urls);
+
+ 		});
+ 	}
 });
-
-//   .controller('MainCtrl', function ($scope, $http, $resource) {
-//   $http.jsonp('https://api.instagram.com/v1/tags/selfie/media/recent?callback=JSON_CALLBACK?&amp;client_id=5616df9edae94bdbaf03d2fa5216d17b')
-//   		.success(function (r) {
-//             console.log('yay')
-//         })
-//         .error(function (e) {
-//           console.log('noo')
-//         });
-// });
-
-
-// .controller("MainCtrl",['$scope','$http','$window',function($scope,$http, $window){  
-  
-//   $http.get('https://api.instagram.com/v1/tags/pokemon/media/recent?callback=JSON_CALLBACK?&amp;client_id=5616df9edae94bdbaf03d2fa5216d17b').then(function(data){
-
-//     $scope.pics=data.data;
-//     console.log($scope.pics);
-
-// 	});
-// }]);
-//   .controller('MainCtrl', function ($scope, $http, $resource) {
-//   	// tag = swag;
-// 	var data = $resource('https://api.instagram.com/v1/tags/selfie/media/recent?callback=JSON_CALLBACK&client_id=5616df9edae94bdbaf03d2fa5216d17b', {tag: "@tag"});
-// 	$scope.pics = data.query({tag: 'swag'});
-// });
