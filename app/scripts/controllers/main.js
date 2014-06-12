@@ -3,9 +3,10 @@
 angular.module('igTranslateApp')
   .controller('MainCtrl', function ($scope, $http, $q) {
 	$scope.sentence = '';
+	var myTimeOut;
  	$scope.parseSentence = function(sentence) {
 
- 		setInterval( function() {
+ 		var getIgs = function() {
  			var strArray = sentence.split(' ');
 
  			var promiseArray = strArray.map(function(word) {
@@ -13,12 +14,19 @@ angular.module('igTranslateApp')
  			});
  			
  			$q.all(promiseArray).then(function(arrayOfArrayOfInstagrams) {
+ 
  				var image_urls = arrayOfArrayOfInstagrams.map(function(response) {
+ 					myTimeOut = setTimeout(getIgs, 5000);
  					return response.data.data[0].images.low_resolution.url;
  				});
  			$scope.images_for_words = image_urls;
  			console.log(image_urls);
  			});
- 		}, 10000)
+ 		};
+ 		clearTimeout(myTimeOut);
+ 		getIgs();
+
+
  	}
 });
+
