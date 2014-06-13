@@ -3,13 +3,19 @@
 angular.module('igTranslateApp')
   .controller('MainCtrl', function ($scope, $http, $q) {
 	$scope.sentence = '';
+	$scope.count = 0;
 	var myTimeOut;
  	$scope.parseSentence = function(sentence) {
+
+
+
  		var delay = function() {
  			return (Math.random()*10)+5000;
  		};
 
  		var getIgs = function() {
+ 			$scope.count++;
+ 			console.log($scope.count)
  			var strArray = sentence.split(' ');
 
  			var promiseArray = strArray.map(function(word) {
@@ -27,6 +33,7 @@ angular.module('igTranslateApp')
  			});
  		};
  		clearTimeout(myTimeOut);
+ 		
  		getIgs();
 
 
