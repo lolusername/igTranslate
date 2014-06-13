@@ -3,25 +3,18 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 @import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
 
 .browsehappy {
-    margin: 0.2em 0;
+    margin: 0 0;
     background: #ccc;
     color: #000;
-    padding: 0.2em 0;
+    padding: 0 0;
 }
 
 /* Space out content a bit */
 body {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-    padding-left: 15px;
-    padding-right: 15px;
-}
 
 /* Custom page header */
 .header {
@@ -60,11 +53,11 @@ body {
 
 /* Supporting marketing content */
 .marketing {
-    margin: 40px 0;
+    margin: 0px 0;
 }
 
 .marketing p + h4 {
-    margin-top: 28px;
+    margin-top: 0px;
 }
 
 /* Responsive: Portrait tablets and up */
@@ -84,12 +77,88 @@ body {
     .header {
         margin-bottom: 30px;
     }
-    /* Remove the bottom border on the jumbotron for visual effect */
+    /* Remove the b
+    ottom border on the jumbotron for visual effect */
     .jumbotron {
         border-bottom: 0;
     }
 }
+.ig-container  {
 
-* {
-    background-color: green;
+height: 67vh;
+position: relative;
+margin: 0 auto;
+padding: 0;
+width:100vw;
+
+
 }
+
+.ig {
+    width: 140px;
+    padding: 50px 5px 5px 20px;
+    border-bottom: 5px solid black;
+    position: relative;
+    margin: 0 auto;
+}
+
+html, body, .container {
+    margin: 0;
+    padding: 0;
+
+}
+
+.container {
+    height: 100vh;
+
+}
+
+@keyframes animatedBackground {
+    from { background-position: 0 0; }
+    to { background-position: 100% 0; }
+}
+
+#animate-area   { 
+
+    background-image: url(../images/1b.jpg);
+    background-position: 0px 0px;
+    background-repeat: repeat-x; 
+    background-size:80%;
+
+    animation: animatedBackground 40s linear infinite;
+}
+
+#landing {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../images/land.gif);
+    background-color: black;
+    background-size: cover;
+    background-position: center;
+}
+
+
+form {
+    width: 50vw;
+    text-align: center;
+    position: relative;
+    left: 25vw;
+}
+#text {
+    width: 100%;
+    height: 12.5vh;
+    text-align: center;
+}
+
+.btn {
+    width: 100%;
+    border-radius: 0;
+    background-color: transparent;
+    color: #0000EE;
+    text-decoration:underline;
+}
+
+.ig-container {
+    margin-left: 0;
+}
+

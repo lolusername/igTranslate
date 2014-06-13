@@ -4,7 +4,6 @@ angular.module('igTranslateApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute',
   'ngRoute'
 ])
   .config(function ($routeProvider, $locationProvider) {

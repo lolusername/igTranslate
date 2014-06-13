@@ -1,7 +1,8 @@
 
-  <div>
-      <img ng-repeat="pic in images_for_words track by $index" ng-src="{{pic}}" />
-      <form action=""><input type="text" ng-model="sentence"><button ng-click="parseSentence(sentence)">refresh</form>
-
+  <div class="ig-container" id="animate-area">
+      <img ng-repeat="pic in images_for_words track by $index" class="ig" ng-src="{{pic}}" />
   </div>
+      <form action=""><input id="text" placeholder="First name" type="text" ng-model="sentence"><button class="btn" ng-click="parseSentence(sentence)">pictures > words</form>
+
+
 

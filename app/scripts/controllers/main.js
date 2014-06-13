@@ -5,6 +5,9 @@ angular.module('igTranslateApp')
 	$scope.sentence = '';
 	var myTimeOut;
  	$scope.parseSentence = function(sentence) {
+ 		var delay = function() {
+ 			return (Math.random()*10)+5000;
+ 		};
 
  		var getIgs = function() {
  			var strArray = sentence.split(' ');
@@ -16,7 +19,7 @@ angular.module('igTranslateApp')
  			$q.all(promiseArray).then(function(arrayOfArrayOfInstagrams) {
  
  				var image_urls = arrayOfArrayOfInstagrams.map(function(response) {
- 					myTimeOut = setTimeout(getIgs, 5000);
+ 					myTimeOut = setTimeout(getIgs, delay());
  					return response.data.data[0].images.low_resolution.url;
  				});
  			$scope.images_for_words = image_urls;
