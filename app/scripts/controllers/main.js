@@ -19,7 +19,7 @@ angular.module('igTranslateApp')
  			var strArray = sentence.split(' ');
 
  			var promiseArray = strArray.map(function(word) {
-				return $http.jsonp('https://api.instagram.com/v1/tags/'+word+'/media/recent?callback=JSON_CALLBACK&client_id=5616df9edae94bdbaf03d2fa5216d17b&count=1')
+				return $http.jsonp('https://api.instagram.com/v1/tags/'+word+'/media/recent?callback=JSON_CALLBACK&client_id=ac26545b432f4a8b86e357f7cfb29332&count=1')
  			});
  			
  			$q.all(promiseArray).then(function(arrayOfArrayOfInstagrams) {
@@ -32,9 +32,11 @@ angular.module('igTranslateApp')
  			console.log(image_urls);
  			});
  		};
+ 		// getIgs(); seeing what tthis does i need to stop the previous
+ 		//parseSentence queires!?!?
  		clearTimeout(myTimeOut);
  		
- 		getIgs();
+ 		 getIgs();
 
 
  	}
